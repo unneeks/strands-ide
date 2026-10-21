@@ -1,0 +1,33 @@
+[project]
+name = "strands-ide"
+version = "0.1.0"
+description = "A Strands Agents + Amazon Bedrock AgentCore code editor. The agent runtime runs locally and an IDE invokes it over HTTP."
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+
+# One combined dependency set so a single `uv pip install -r requirements.txt`
+# (or `uv sync`) sets up both the agent runtime and the IDE server.
+# Versions are left as lower bounds: these are well-known, actively maintained
+# packages and we want to pull latest-compatible rather than pin to versions that
+# may already be superseded. Pin tighter in a real deployment if you need
+# reproducibility.
+dependencies = [
+    # --- Agent runtime (Strands + AgentCore) ---
+    "strands-agents>=1.0",
+    "strands-agents-tools>=0.1",
+    "bedrock-agentcore>=0.1",
+    "boto3>=1.43.95",          # floor required by the AgentCore SDK for full API support
+    # --- IDE server ---
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.uv]
+package = false

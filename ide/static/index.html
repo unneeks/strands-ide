@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strands IDE</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <!-- Monaco editor (VS Code's editor) from CDN -->
+  <link rel="stylesheet"
+    data-name="vs/editor/editor.main"
+    href="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/editor/editor.main.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⌁</span>
+      <span>Strands IDE</span>
+      <span id="agentStatus" class="badge" title="agent runtime status">agent: …</span>
+    </div>
+    <div class="topbar-right">
+      <span id="workspaceRoot" class="muted" title="workspace root"></span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- Left: file explorer -->
+    <aside class="pane explorer">
+      <div class="pane-head">
+        <span>Explorer</span>
+        <button id="refreshTreeBtn" class="mini" title="Refresh">⟳</button>
+      </div>
+      <div id="tree" class="tree" tabindex="0"></div>
+    </aside>
+
+    <!-- Center: editor + run panel -->
+    <section class="pane editor-pane">
+      <div id="tabs" class="tabs"></div>
+      <div id="editor" class="editor"></div>
+      <div id="runPanel" class="run-panel">
+        <div class="run-head">
+          <span>Run</span>
+          <input id="runCmd" type="text" placeholder="e.g. python app.py  |  pytest -q" />
+          <button id="runBtn">Run</button>
+          <button id="clearRunBtn" class="mini">Clear</button>
+          <button id="toggleRunBtn" class="mini" title="collapse/expand">▾</button>
+        </div>
+        <pre id="runOutput" class="run-output"></pre>
+      </div>
+    </section>
+
+    <!-- Right: chat with the agent -->
+    <aside class="pane chat">
+      <div class="pane-head">
+        <span>Agent</span>
+        <span id="busy" class="busy hidden">working…</span>
+      </div>
+      <div id="messages" class="messages"></div>
+      <div class="composer">
+        <textarea id="prompt" rows="3"
+          placeholder="Ask the agent to edit the Python app… (Ctrl/Cmd+Enter to send)"></textarea>
+        <button id="sendBtn">Send</button>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

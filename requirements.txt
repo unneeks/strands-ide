@@ -1,0 +1,16 @@
+# Strands + AgentCore + IDE dependencies (agent runtime + IDE server).
+# Install with:  uv pip install -r requirements.txt
+# (or)           uv venv --python 3.12 && uv pip install -r requirements.txt
+
+strands-agents>=1.0
+strands-agents-tools>=0.1
+bedrock-agentcore>=0.1
+boto3>=1.43.95
+
+fastapi>=0.115
+uvicorn[standard]>=0.30
+httpx>=0.27
+
+# For running the sample app + its tests inside the workspace:
+flask>=3.0
+pytest>=8.0

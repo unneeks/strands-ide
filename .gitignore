@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# AgentCore
+deployment_package/
+deployment_package.zip
+
+# IDE / editor
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Local secrets / env
+.env
+.env.*
